@@ -1,85 +1,72 @@
-🛒 Customer Segmentation and Churn Prediction in E-commerce
-📌 Project Overview
+🛒 Customer Segmentation & Churn Prediction (E-Commerce)
+📌 Overview
 
-This project presents an end-to-end data science pipeline applied to an e-commerce use case, covering:
+End-to-end Data Science project using real e-commerce transactional data.
 
-Data cleaning and preprocessing of raw transactional data
+The project covers:
 
-Feature engineering at customer level
+Data cleaning and preprocessing
 
-Customer segmentation using unsupervised learning (clustering)
+Customer-level feature engineering
 
-Churn prediction using supervised machine learning models
+Customer segmentation (unsupervised learning)
 
-Interpretation of results from a business perspective
+Churn prediction (supervised learning)
 
-The goal is to demonstrate how customer behavior can be modeled, segmented, and leveraged to predict churn, following best practices in data science and avoiding common pitfalls such as data leakage.
+Business interpretation of results
 
-🎯 Business Problem
+The goal is to model customer behavior and identify churn risk using robust feature design and proper validation techniques.
 
-Customer churn is a critical challenge in e-commerce. Understanding which customers are likely to stop purchasing and how different behavioral segments behave enables:
+🎯 Business Objective
+
+In e-commerce, retaining customers is more cost-effective than acquiring new ones.
+
+This project answers:
+
+Can we identify distinct customer segments?
+
+Can we predict which customers are likely to churn?
+
+Results can support:
 
 Targeted retention strategies
 
 Personalized marketing campaigns
 
-More efficient allocation of marketing resources
-
-This project addresses these challenges by combining customer segmentation with predictive modeling.
+Efficient resource allocation
 
 📊 Dataset
 
 Source: Online Retail Dataset (UCI / Kaggle)
 
-Description: Real transactional data from a UK-based online retailer
+Period: 2010–2011
 
-Period: December 2010 – December 2011
+Type: Transaction-level data
 
-Granularity: Transaction-level data
+Main challenges addressed:
 
-Key challenges in the dataset:
+Missing customer IDs
 
-Missing customer identifiers
+Returns and cancellations
 
-Cancellations and product returns
-
-Negative quantities and invalid prices
-
-Strongly skewed monetary distributions
-
-ecommerce-customer-segmentation/
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── notebooks/
-│   ├── 01_eda_and_cleaning.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_clustering.ipynb
-│   └── 04_churn_prediction.ipynb
-│
-├── README.md
-└── requirements.txt
+Skewed monetary distributions
 
 🔄 Methodology
-1. Data Cleaning & EDA
+1️⃣ Data Cleaning & EDA
 
-Removal of invalid records and duplicates
+01_eda_and_cleaning.ipynb
 
-Explicit handling of missing CustomerID values
+Removal of invalid transactions
 
-Identification of cancellations and returns as behavioral signals
+Handling missing values
 
-Exploratory analysis of temporal and monetary patterns
+Creation of total transaction value
 
-📓 Notebook: 01_eda_and_cleaning.ipynb
+2️⃣ Feature Engineering
 
-2. Feature Engineering
+02_feature_engineering.ipynb
 
-Aggregation from transactions to customer-level features
-
-Construction of classical RFM variables:
+Customer-level aggregation including:
 
 Recency
 
@@ -87,113 +74,65 @@ Frequency
 
 Monetary value
 
-Additional behavioral features:
-
-Average basket size
-
-Variability of spending
+Basket metrics
 
 Return ratio
 
-Average time between purchases
+Log transformation and scaling applied to handle skewness.
 
-Log transformations and robust scaling to handle skewness and outliers
-
-📓 Notebook: 02_feature_engineering.ipynb
-
-3. Customer Segmentation (Clustering)
-
-Unsupervised clustering using K-Means (baseline)
-
-Objective selection of number of clusters using:
-
-Elbow method
-
-Silhouette score
-
-Cluster interpretation based on customer behavior
-
-Visualization of segments using PCA (for interpretability only)
-
-📓 Notebook: 03_clustering.ipynb
-
-4. Churn Prediction
-
-Definition of churn using a future prediction window, avoiding data leakage
-
-Supervised models:
-
-Logistic Regression (baseline, interpretable)
-
-Random Forest (non-linear model)
-
-Evaluation using ROC-AUC and classification metrics
-
-Comparison of models with and without cluster features
-
-Feature importance analysis to interpret drivers of churn
-
-📓 Notebook: 04_churn_prediction.ipynb
-
-🧠 Key Results
-
-Customer segmentation reveals clearly differentiated behavioral profiles
-
-Churn is strongly influenced by:
-
-Recency of last purchase
-
-Purchase frequency
-
-Customer segment membership
-
-Including cluster information improves predictive performance
-
-Even simple, interpretable models provide strong results when features are well designed
-
-🛠️ Tech Stack
-
-Language: Python
-
-Data manipulation: Pandas, NumPy
-
-Visualization: Matplotlib, Seaborn
-
-Machine Learning: Scikit-learn
-
-Methods:
-
-Clustering (K-Means, GMM)
-
-Classification (Logistic Regression, Random Forest)
-
-🚀 How to Run the Project
-
-Clone the repository
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Run notebooks in order:
-
-01_eda_and_cleaning.ipynb
-
-02_feature_engineering.ipynb
+3️⃣ Customer Segmentation
 
 03_clustering.ipynb
 
+K-Means clustering
+
+Elbow & Silhouette methods
+
+PCA visualization
+
+Business interpretation of segments
+
+4️⃣ Churn Prediction
+
 04_churn_prediction.ipynb
+
+Time-based churn definition (no data leakage)
+
+Logistic Regression
+
+Random Forest
+
+ROC-AUC evaluation
+
+Feature importance analysis
+
+🧠 Key Insights
+
+Clear behavioral segments emerge from transactional data
+
+Recency and frequency strongly influence churn
+
+Including cluster membership improves prediction
+
+Well-designed features outperform complex models
+
+🛠️ Tech Stack
+
+Python
+
+Pandas, NumPy
+
+Matplotlib, Seaborn
+
+Scikit-learn
+
+🚀 How to Run
+pip install -r requirements.txt
+
+Run notebooks in order from 01 to 04.
 
 📌 Notes
 
-The project strictly separates feature construction and target definition in time to prevent data leakage.
+Data leakage is explicitly avoided.
 
-All modeling choices are justified from both a technical and business perspective.
-
-The pipeline is designed to be easily extensible to production settings or additional models.
-
-📬 Contact
-
-If you have questions, suggestions, or would like to discuss this project, feel free to reach out.
+Modeling decisions are driven by both technical and business considerations.
